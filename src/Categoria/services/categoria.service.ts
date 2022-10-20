@@ -14,29 +14,25 @@ export class CategoriaService{
             return await this.categoriaRepository.find();
         }
 
-        // Método Achar pelo ID
+        // Método Achar/Encontrar pelo ID
         async findById(id: number): Promise<Categoria> {
             let categoria = await this.categoriaRepository.findOne({
                 where: {
                     id
-                }
-            });
+                }});
 
             if(!categoria) {
-                throw new HttpException('Id Relacionado ao Objeto não foi encontrado.', HttpStatus.NOT_FOUND)
-            }
+                throw new HttpException('Id Relacionado ao Objeto não foi encontrado.', HttpStatus.NOT_FOUND) }
 
-            return categoria;
+            return categoria; 
         }
 
-        // Método Achar Pelo Nome
+        // Método Achar Pelo Modelo
         async findByModelo(modelo: string): Promise<Categoria[]> {
             return await this.categoriaRepository.find({
                 where: {
                     modelo: ILike(`%${modelo}%`)
-                }
-            })
-        }
+                }})}
 
         // Mandar Dados Novos para o Banco de Dados
         async create(categoria: Categoria): Promise<Categoria> {
@@ -50,8 +46,7 @@ export class CategoriaService{
         if (!buscaCategoria || !categoria.id)
             throw new HttpException('ID Relacionado ao Objeto não foi encontrado.', HttpStatus.NOT_FOUND)
         
-            return await this.categoriaRepository.save(categoria)
-        }
+            return await this.categoriaRepository.save(categoria) }
 
         // Deletar os Dados no Banco de Dados
         async delete(id: number): Promise<DeleteResult> {
